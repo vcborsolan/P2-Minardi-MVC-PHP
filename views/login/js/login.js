@@ -3,7 +3,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		$.post("ver/",$("#frmLogin").serialize(),function(data){
 			if(data=="OK"){
-				window.location='../index/';
+				window.location.assing('http://localhost/Minardi/P2/app/produtos')
 			}
 			else{
 				alert(data);

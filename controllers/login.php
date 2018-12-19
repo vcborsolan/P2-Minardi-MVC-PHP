@@ -8,7 +8,7 @@ class Login extends Controller {
     }
     
     function index() {
-        $this->view->title = 'Identificação do Cliente';
+        $this->view->title = 'Identificação do Admin';
 		$this->view->render('header');
         $this->view->render('login/index');
 		$this->view->render('footer');

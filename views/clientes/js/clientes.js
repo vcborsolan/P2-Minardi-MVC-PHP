@@ -18,7 +18,7 @@ $(document).ready(function(){
 		 
 		  $("#tabres").find("tr:gt(0)").remove();
 			for (var i = 0; i < data.length; i++){
-				$('#lsclientes').append('<tr><td>' + data[i].cpf + '</td><td>' + data[i].nome + '</td><td>' + data[i].endereco + '</td><td><button class="del btn btn-xs btn-default" valor="'+data[i].codigo+'" type="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp;<button class="edt btn btn-xs btn-default" valor="'+data[i].codigo+'" type="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></td></tr>');
+				$('#lsclientes').append('<tr><td>' + data[i].cpf + '</td><td>' + data[i].nome + '</td><td>' + data[i].email + '</td><td><button class="del btn btn-xs btn-default" valor="'+data[i].codigo+'" type="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp;<button class="edt btn btn-xs btn-default" valor="'+data[i].codigo+'" type="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></td></tr>');
 			}
 			
 		});
@@ -51,13 +51,12 @@ $(document).ready(function(){
 			$("#botoesedit").show();
 			$("#botaocad").hide();
 			
-			$("#txtcod").prop("readonly",true);
+			$("#txtcpf").prop("readonly",true);
 
-			$("#txtcod").val(data[0].codigo);
 			$("#txtcpf").val(data[0].cpf);
 			$("#txtnome").val(data[0].nome);
-			$("#txtend").val(data[0].endereco);
 			$("#txtfone").val(data[0].telefone);
+	
 			
 		});
 		

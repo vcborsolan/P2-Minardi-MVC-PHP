@@ -8,9 +8,10 @@ class Clientes_Model extends Model {
     
 	public function lista() 
     {  
-        $result=$this->db->select('select codigo,trim(cpf)as cpf,nome,endereco from cliente order by nome');
+        $result=$this->db->select('select trim(cpf)as cpf,nome,email from cliente order by nome');
 		
-		//print_r($result);
+        //print_r($result);
+        
 		
 		$result = json_encode($result);
 		
@@ -21,31 +22,34 @@ class Clientes_Model extends Model {
 
     public function insert() 
     {
-        $codigo = $_POST['txtcod'];
         $cpf    = $_POST['txtcpf'];
         $nome   = $_POST['txtnome'];
-        $end    = $_POST['txtend'];
+        // $end = $_POST['txtend'];
         $fone   = $_POST['txtfone'];
-        $senha  = $_POST['txtsenha'];
+        $rua = $_POST['txtrua'];
+        $email = $_POST['txtemail'];
+        $bairro = $_POST['txtbairro'];
+        $cep = $_POST['txtcep'];
         
-        $this->db->insert('cliente', array('codigo' =>$codigo,'cpf'=>$cpf,'nome'=>$nome,'endereco'=>$end,'telefone'=>$fone,'senha'=>hash('sha256',$senha)));
-       echo "Dados Inseridos com Sucesso";
+        $this->db->insert('cliente', array('cpf'=>$cpf,'nome'=>$nome,'telefone'=>$fone,'rua'=>$rua,'email'=>$email,'bairro'=>$bairro,'cep'=>$cep));
+       
+        echo "Dados Inseridos com Sucesso";
     }
 	
 	public function del() 
     {  
 		//o codigo deve ser um inteiro
-		$cod=(int)$_POST['cod'];
+		$cpf=(int)$_POST['cpf'];
 		
-        $this->db->delete('cliente',"codigo='$cod'");
+        $this->db->delete('cliente',"cpf='$cpf'");
 	}
 	
 	public function loadData() 
     {  
 		//o codigo deve ser um inteiro
-		$cod=(int)$_POST['cod'];
+		$cpf=(int)$_POST['cpf'];
 		
-         $result=$this->db->select('select codigo,trim(cpf)as cpf,nome,endereco,telefone from cliente where codigo=:cod',array(":cod"=>$cod));
+         $result=$this->db->select('select trim(cpf)as cpf,nome,email from cliente where cpf=:cpf',array(":cpf"=>$cpf));
 		$result = json_encode($result);
 		echo($result);
 	}
@@ -53,22 +57,20 @@ class Clientes_Model extends Model {
 	
 	public function save() 
     {
-        $codigo = $_POST['txtcod'];
+        // $codigo = $_POST['txtcod'];
         $cpf    = $_POST['txtcpf'];
         $nome   = $_POST['txtnome'];
-        $end    = $_POST['txtend'];
+        // $end    = $_POST['txtend'];
         $fone   = $_POST['txtfone'];
         $senha  = $_POST['txtsenha'];
+        $rua = $_POST['txtrua'];
+        $email = $_POST['txtemail'];
+        $bairro = $_POST['txtbairro'];
+        $cep = $_POST['txtcep'];
 		
-		$dadosSave=array('cpf'=>$cpf,'nome'=>$nome,'endereco'=>$end,'telefone'=>$fone);
-		
-		
-		if($senha!=""){
-			$senha=hash('sha256',$senha);
-			$dadosSave['senha']=$senha;
-		}
+		$dadosSave=array('cpf'=>$cpf,'nome'=>$nome,'telefone'=>$fone,'rua'=>$rua,'email'=>$email,'bairro'=>$bairro,'cep'=>$cep);
         
-       $this->db->update('cliente', $dadosSave,"codigo='$codigo'");
+       $this->db->update('cliente', $dadosSave,"cpf='$cpf'");
        echo "Dados gravados com Sucesso";
 	   
     }

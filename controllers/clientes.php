@@ -4,7 +4,7 @@ class Clientes extends Controller {
 
     function __construct() {
         parent::__construct();
-        //Auth::autentica();
+        // Auth::autentica();
         $this->view->js = array('clientes/js/clientes.js');
     }
     
